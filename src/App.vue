@@ -11,6 +11,9 @@ export default {
   components: {
     HelloWorld,
   },
+  mounted() {
+    console.log(process.env.VUE_APP_API_TOKEN);
+  },
 };
 </script>
 
