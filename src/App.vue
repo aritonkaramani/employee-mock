@@ -1,29 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div></div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import axios from "axios";
 export default {
   name: "App",
-  components: {
-    HelloWorld,
-  },
   mounted() {
-    console.log(process.env.VUE_APP_API_TOKEN);
+    this.getEmployees();
+    console.log(process.env);
+  },
+  methods: {
+    async getEmployees() {
+      const response = await axios.get("https://api.1337co.de/v3/employees", {
+        headers: {
+          Authorization: `${process.env.VUE_APP_API_AUTH_TOKEN}`,
+        },
+      });
+      this.employees = response.data;
+      this.employees.map((employee) => {
+        if (employee.office === null) {
+          employee.office = "";
+        }
+        if (employee.name === null) {
+          employee.name = "";
+        }
+      });
+      console.log(this.employees);
+    },
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss"></style>
