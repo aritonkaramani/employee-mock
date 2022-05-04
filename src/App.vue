@@ -3,7 +3,7 @@
     <input v-model="search_query" />
     <div class="employee-wrapper">
       <info-card
-        v-for="(employee, index) in employees"
+        v-for="(employee, index) in filteredEmployeeList"
         :key="index"
         :employee="employee"
       />
@@ -24,6 +24,13 @@ export default {
       employees: [],
       search_query: "",
     };
+  },
+  computed: {
+    filteredEmployeeList() {
+      return this.employees.filter((user) => {
+        return user.name.toLowerCase().match(this.search_query.toLowerCase());
+      });
+    },
   },
   mounted() {
     this.getEmployees();
