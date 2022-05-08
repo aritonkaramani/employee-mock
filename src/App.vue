@@ -1,6 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <input v-model="search_query" />
+    <tool-bar @search-filter="setQuery(event)" @sort-order="sortList($event)" />
     <div class="employee-wrapper">
       <info-card
         v-for="(employee, index) in filteredEmployeeList"
@@ -14,23 +14,25 @@
 <script>
 import axios from "axios";
 import InfoCard from "./components/InfoCard.vue";
+import ToolBar from "./components/ToolBar.vue";
 export default {
   name: "App",
   components: {
     InfoCard,
+    ToolBar,
   },
   data() {
     return {
       employees: [],
-      search_query: "",
+      searchQuery: "",
     };
   },
   computed: {
     filteredEmployeeList() {
       return this.employees.filter((user) => {
         return (
-          user.name.toLowerCase().match(this.search_query.toLowerCase()) ||
-          user.office.toLowerCase().match(this.search_query.toLowerCase())
+          user.name.toLowerCase().match(this.searchQuery.toLowerCase()) ||
+          user.office.toLowerCase().match(this.searchQuery.toLowerCase())
         );
       });
     },
@@ -54,6 +56,9 @@ export default {
           return Promise.resolve(response.data);
         });
     },
+    setQuery(event) {
+      this.searchQuery = event;
+    },
     fixNullData(array) {
       array.map((item) => {
         if (item.office === null) {
@@ -64,6 +69,34 @@ export default {
         }
       });
       return array;
+    },
+    sortList(event) {
+      console.log(event);
+      switch (event) {
+        case "NameAsc":
+          this.employees.sort(this.propertySort("name", 1));
+          break;
+        case "NameDsc":
+          this.employees.sort(this.propertySort("name", -1));
+          break;
+        case "OfficeAsc":
+          this.employees.sort(this.propertySort("office", 1));
+          break;
+        case "OfficeDsc":
+          this.employees.sort(this.propertySort("office", -1));
+          break;
+      }
+    },
+    propertySort(property, sortOrder) {
+      return function (a, b) {
+        let result = 0;
+        if (a[property] < b[property]) {
+          result = -1;
+        } else if (a[property] > b[property]) {
+          result = 1;
+        }
+        return result * sortOrder;
+      };
     },
   },
 };
