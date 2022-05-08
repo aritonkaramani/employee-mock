@@ -33,24 +33,34 @@ export default {
     },
   },
   mounted() {
-    this.getEmployees();
+    this.setup();
   },
   methods: {
+    async setup() {
+      this.employees = await this.getEmployees();
+      this.employees = this.fixNullData(this.employees);
+    },
     async getEmployees() {
-      const response = await axios.get("https://api.1337co.de/v3/employees", {
-        headers: {
-          Authorization: `${process.env.VUE_APP_API_AUTH_TOKEN}`,
-        },
-      });
-      this.employees = response.data;
-      this.employees.map((employee) => {
-        if (employee.office === null) {
-          employee.office = "";
+      return await axios
+        .get("https://api.1337co.de/v3/employees", {
+          headers: {
+            Authorization: `${process.env.VUE_APP_API_AUTH_TOKEN}`,
+          },
+        })
+        .then((response) => {
+          return Promise.resolve(response.data);
+        });
+    },
+    fixNullData(array) {
+      array.map((item) => {
+        if (item.office === null) {
+          item.office = "";
         }
-        if (employee.name === null) {
-          employee.name = "";
+        if (item.name === null) {
+          item.name = "";
         }
       });
+      return array;
     },
   },
 };
