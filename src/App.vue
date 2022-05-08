@@ -28,7 +28,10 @@ export default {
   computed: {
     filteredEmployeeList() {
       return this.employees.filter((user) => {
-        return user.name.toLowerCase().match(this.search_query.toLowerCase());
+        return (
+          user.name.toLowerCase().match(this.search_query.toLowerCase()) ||
+          user.office.toLowerCase().match(this.search_query.toLowerCase())
+        );
       });
     },
   },
