@@ -1,7 +1,12 @@
 <template>
-  <div>
-    <input v-model="query" />
-    <select name="Sort" id="Sort" v-model="sortOption">
+  <div class="toolbar">
+    <input v-model="query" placeholder="Filter..." />
+    <select
+      name="Sort"
+      id="Sort"
+      v-model="sortOption"
+      class="dropdown-sort-options"
+    >
       <option value="NameAsc">Name (Ascending)</option>
       <option value="NameDsc">Name (Descending)</option>
       <option value="OfficeAsc">Office (Ascending)</option>
@@ -29,4 +34,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@use "./ToolBar.scss";
+</style>
