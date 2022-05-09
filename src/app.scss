@@ -30,7 +30,18 @@
         width: 12rem;
         height: 12rem;
         animation: spin 2s linear infinite;
+        @media screen and (max-width: 1024px) {
+            height: 6rem;
+            width: 6rem;
+            left: 40%;
+        }
+        @media screen and (max-width: 760px) {
+            height: 6rem;
+            width: 6rem;
+            left: 30%;
+        }
       }
+      
       
       @keyframes spin {
         0% { transform: rotate(0deg); }

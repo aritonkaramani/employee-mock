@@ -5,14 +5,14 @@
         <img
           v-if="employee.imagePortraitUrl"
           :src="employee.imagePortraitUrl"
-          alt=""
+          alt="image of an employee"
           class="employee-image"
           @error="errorImg"
         />
         <img
           v-else
-          src="../assets/no-image.jpeg"
-          alt=""
+          src="../assets/placeholder-image.jpg"
+          alt="a placeholder image"
           class="placeholder-image"
         />
       </div>
@@ -28,12 +28,15 @@
               :href="`https://linkedin.com/${employee.linkedIn}`"
               target="_blank"
             >
-              <img src="../assets/icons8-linkedin-circled.svg" alt="" />
+              <img
+                src="../assets/icons8-linkedin-circled.svg"
+                alt="linkedin icon"
+              />
             </a>
             <a v-else>
               <img
                 src="../assets/icons8-linkedin-circled.svg"
-                alt=""
+                alt="linkedin icon"
                 class="faded-link"
               />
             </a>
@@ -44,12 +47,12 @@
               :href="`https://github.com/${employee.gitHub}`"
               target="_blank"
             >
-              <img src="../assets/icons8-github.svg" alt="" />
+              <img src="../assets/icons8-github.svg" alt="github icon" />
             </a>
             <a v-else>
               <img
                 src="../assets/icons8-github.svg"
-                alt=""
+                alt="github icon"
                 class="faded-link"
               />
             </a>
@@ -60,12 +63,15 @@
               :href="`https://twitter.com/${employee.twitter}`"
               target="_blank"
             >
-              <img src="../assets/icons8-twitter-circled.svg" alt="" />
+              <img
+                src="../assets/icons8-twitter-circled.svg"
+                alt="twitter icon"
+              />
             </a>
             <a v-else>
               <img
                 src="../assets/icons8-twitter-circled.svg"
-                alt=""
+                alt="twitter icon"
                 class="faded-link"
               />
             </a>
@@ -77,7 +83,7 @@
 </template>
 
 <script>
-import placeHolderImg from "../assets/no-image.jpeg";
+import placeHolderImg from "../assets/placeholder-image.jpg";
 export default {
   name: "EmployeeCard",
   props: {

@@ -24,6 +24,15 @@ yarn test:unit
 ```
 yarn lint
 ```
+### Targeted Goals
+````
+Responsive Design
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Modern CSS
+
+Sort by name and office
+
+Filter by name and office
+
+Unit tests
+````
