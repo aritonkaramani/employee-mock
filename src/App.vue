@@ -1,6 +1,9 @@
 <template>
   <div class="app-wrapper">
-    <tool-bar @search-filter="setQuery(event)" @sort-order="sortList($event)" />
+    <tool-bar
+      @search-filter="setQuery($event)"
+      @sort-order="sortList($event)"
+    />
     <div class="employee-wrapper">
       <info-card
         v-for="(employee, index) in filteredEmployeeList"
@@ -71,7 +74,6 @@ export default {
       return array;
     },
     sortList(event) {
-      console.log(event);
       switch (event) {
         case "NameAsc":
           this.employees.sort(this.propertySort("name", 1));
@@ -84,6 +86,9 @@ export default {
           break;
         case "OfficeDsc":
           this.employees.sort(this.propertySort("office", -1));
+          break;
+        default:
+          this.employees.sort(this.propertySort("name", 0));
           break;
       }
     },
