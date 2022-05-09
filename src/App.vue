@@ -1,16 +1,18 @@
 <template>
   <div class="app-wrapper">
     <tool-bar
+      :disabled="loading"
       @search-filter="setQuery($event)"
       @sort-order="sortList($event)"
     />
-    <div class="employee-wrapper">
+    <div v-if="!loading" class="employee-wrapper">
       <info-card
         v-for="(employee, index) in filteredEmployeeList"
         :key="index"
         :employee="employee"
       />
     </div>
+    <div v-else class="loader"></div>
   </div>
 </template>
 
@@ -28,6 +30,7 @@ export default {
     return {
       employees: [],
       searchQuery: "",
+      loading: true,
     };
   },
   computed: {
@@ -56,6 +59,7 @@ export default {
           },
         })
         .then((response) => {
+          this.loading = false;
           return Promise.resolve(response.data);
         });
     },

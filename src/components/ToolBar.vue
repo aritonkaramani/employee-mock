@@ -1,11 +1,12 @@
 <template>
   <div class="toolbar">
-    <input v-model="query" placeholder="Filter..." />
+    <input v-model="query" placeholder="Filter..." :disabled="disabled" />
     <select
       name="Sort"
       id="Sort"
       v-model="sortOption"
       class="dropdown-sort-options"
+      :disabled="disabled"
     >
       <option value="NameAsc">Name (Ascending)</option>
       <option value="NameDsc">Name (Descending)</option>
@@ -22,6 +23,9 @@ export default {
       query: "",
       sortOption: "NameAsc",
     };
+  },
+  props: {
+    disabled: Boolean,
   },
   watch: {
     query() {

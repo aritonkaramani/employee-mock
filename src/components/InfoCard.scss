@@ -1,9 +1,15 @@
 .card {
     width: 20rem;
-    height: 25rem;
+    height: 32rem;
     border: 1px solid grey;
     background-color: white;
     box-shadow: 0 0 2rem rgba(0,0,0,0.2);
+    @media screen and (max-width: 1024px) {
+        width: 90%;
+    }
+    @media screen and (max-width: 700px) {
+        width: 100%;
+    }
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -13,7 +19,7 @@
             justify-content: center;
             align-items: center;
             padding: 0.5rem;
-            height: 70%;
+            height: 80%;
             .employee-image {
                 width: 100%;
                 height: 100%;
@@ -23,14 +29,14 @@
             .placeholder-image {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: fill;   
             }
         }
         .info-section {
             display: grid;
             grid-template-columns: repeat(2,1fr);
             padding: 1rem;
-            height: 30%;
+            height: 20%;
             .employee-info {
                 p {
                     font-size: clamp(12px, 80%, 24px);

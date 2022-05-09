@@ -3,6 +3,9 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
+    @media screen and (max-width: 300px) {
+        flex-direction: column;
+    }
     input {
         background-color: white;
         border: 0.1rem solid grey;
@@ -10,6 +13,12 @@
         width: 30rem;
         height: 1.75rem;
         margin-right: 0.3rem;
+        @media screen and (max-width: 400px) {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            flex-direction: column;
+            width: 15rem;
+        }
     }
     .dropdown-sort-options {
         height: 2rem;
