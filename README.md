@@ -3,6 +3,8 @@
 ## Project setup
 ```
 yarn install
+
+Add your api key to a .env file and name the variable VUE_APP_API_AUTH_TOKEN
 ```
 
 ### Compiles and hot-reloads for development
